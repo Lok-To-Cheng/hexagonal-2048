@@ -181,7 +181,7 @@ function touchStarted() {
 function touchEnded() {
   controller.endSwipe(mouseX, mouseY, now());
   control();
-  delay(1000).then(saveGame);
+  delay(500).then(saveGame);
 
   // Prevent the default touch action.
   return false;
