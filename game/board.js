@@ -104,6 +104,29 @@ class Board {
     return null;
   }
 
+  // Beginning of Jasper's code
+
+  loadGame() {
+    var savedGame = JSON.parse(localStorage.getItem('progress'));
+  
+    if (typeof(savedGame.score) !== undefined) {
+      this.score = savedGame.score;
+    } else {
+      this.reset()
+    };
+
+    let i = 0;
+    this.tiles.forEach((tile) => {
+      tile = savedGame.game[i];
+      i++;
+    });
+    
+    const transitions = this.tiles;
+    return transitions;
+  }
+
+  // End of Jasper's code
+
   reset() {
     this.score = 0;
     this.tiles.forEach((tile) => tile.clear());

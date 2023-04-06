@@ -150,6 +150,11 @@ function setup() {
   reset();
 }
 
+function loadGame() {
+  const transitions = board.loadGame();
+  makeTransitions(transitions);
+}
+
 function reset() {
   const transitions = board.reset();
   makeTransitions(transitions);
@@ -163,7 +168,7 @@ function draw() {
 function keyPressed() {
   controller.pressKey(keyCode);
   control();
-  delay(1000).then(saveGame);
+  delay(500).then(saveGame);
 }
 
 function touchStarted() {
@@ -182,6 +187,8 @@ function touchEnded() {
   return false;
 }
 
+// Beginning of Jasper's code
+
 function delay(time) {
   return new Promise(resolve => setTimeout(resolve, time));
 }
@@ -196,10 +203,11 @@ function saveGame() {
     // console.log(tileCoordinates)
     // console.log(tileValue)
     var tileListItem = {
-      tileCoordinates: tileCoordinates,
-      tileValue: tileValue
+      coordinates: tileCoordinates,
+      value: tileValue
     }
-    // console.log(tileListItem)
+    // console.log(board.tiles[i])      <-    those two have
+    // console.log(tileListItem)        <-    the same values
     tileList.push(tileListItem)
   }
 
@@ -213,6 +221,8 @@ function saveGame() {
 
   console.log(progress)
 }
+
+// End of Jasper's code
 
 function control() {
   const direction = controller.getBuffer();
